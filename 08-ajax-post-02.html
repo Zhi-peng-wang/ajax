@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-ajax-post</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/myAjax2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('button').click(function () {
+                ajax("POST", "08-ajax-post.php",{
+                    "userName":"WZP",
+                    "userPwd":"321"
+                }, 3000,function (xmlhttp) {
+                    alert(xmlhttp.responseText)
+                },function (xmlhttp) {
+                    alert("请求失败")
+                })
+            })
+        })
+    </script>
+
+</head>
+<body>
+<button>按钮</button>
+</body>
+</html>

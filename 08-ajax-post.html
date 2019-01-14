@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-ajax-post</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('button').click(function () {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                //1.创建一个异步请求对象
+                // var xmlhttp = new XMLHttpRequest();
+                //2.请求方式和请求地址
+                /*
+                    在ie浏览器中，如果通过Ajax发送get请求，那么ie浏览器认为同一个url只有一个地址
+                    05-ajax-get.txt === abc
+                    console.log(Math.random());
+                    console.log(new Date().getTime());
+                */
+                //在ie浏览器中使用此种方法，确保每次请求的数据都不一样
+                xmlhttp.open("POST", "08-ajax-post.php", true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                //3.发送请求
+                xmlhttp.send("userName=wzp&userPwd=321");
+                //4.监听状态
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState ===4){
+                        if (xmlhttp.status >=200 && xmlhttp.status< 300 || xmlhttp.status===304){
+                            // alert("请求成功");
+                            alert(xmlhttp.responseText);
+                        } else {
+                            alert("请求失败");
+                        }
+                    }
+                }
+                //5.处理结果
+            })
+        })
+    </script>
+</head>
+<body>
+<button>按钮</button>
+</body>
+</html>

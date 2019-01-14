@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-ajax-get-分装</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/myAjax.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('button').click(function () {
+                //url?key=value&key2=value2
+                ajax("04-ajax-get.php",{
+                    "userName": "wanzghipeng",
+                    "userPwd": "123"
+                },3000
+                ,function (xmlhttp) {
+                    alert(xmlhttp.responseText);
+                }, function (xmlhttp) {
+                    alert("请求失败");
+                })
+            })
+        });
+    </script>
+
+
+</head>
+<body>
+    <button>发送请求</button>
+</body>
+</html>
