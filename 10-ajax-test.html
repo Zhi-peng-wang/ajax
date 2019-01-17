@@ -61,10 +61,46 @@
                 });
             }
             oBtns[1].onclick = function () {
-
+                var self = this;
+                // 4.发送Aajx请求到服务器
+                ajax({
+                    type:"GET",
+                    url:"10-ajax-test.php",
+                    data:{"name":this.getAttribute("name")},
+                    timeout: 3000,
+                    success: function (xhr) {
+                        // alert(xhr.responseText);
+                        var res = xhr.responseText.split("|");
+                        // console.log(res);
+                        oTitle.innerHTML = res[0];
+                        oDes.innerHTML = res[1];
+                        oImg.setAttribute("src", res[2]);
+                    },
+                    error: function (xhr) {
+                        alert(xhr.status);
+                    }
+                });
             }
             oBtns[2].onclick = function () {
-
+                var self = this;
+                // 4.发送Aajx请求到服务器
+                ajax({
+                    type:"GET",
+                    url:"10-ajax-test.php",
+                    data:{"name":this.getAttribute("name")},
+                    timeout: 3000,
+                    success: function (xhr) {
+                        // alert(xhr.responseText);
+                        var res = xhr.responseText.split("|");
+                        // console.log(res);
+                        oTitle.innerHTML = res[0];
+                        oDes.innerHTML = res[1];
+                        oImg.setAttribute("src", res[2]);
+                    },
+                    error: function (xhr) {
+                        alert(xhr.status);
+                    }
+                });
             }
         }
     </script>

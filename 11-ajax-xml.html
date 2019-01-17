@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-ajax-xml</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('button').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "11-ajax-xml.php",
+                    success: function(msg){
+                        // alert( msg.responseXML.querySelector("name").innerHTML );
+                        var res = msg.querySelector("name");
+                        var res2 = msg.querySelector("age");
+                        // alert(res.innerHTML+res2.innerHTML);
+                        console.log(res.innerHTML);
+                    },
+                    error:function (e) {
+                        alert(e.status)
+                    }
+                });
+            })
+        })
+    </script>
+
+</head>
+<body>
+<button>发送请求</button>
+</body>
+</html>

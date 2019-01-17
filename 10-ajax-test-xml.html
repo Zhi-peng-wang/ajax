@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-ajax-test-xml</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/myAjax2.js"></script>
+    <script>
+        $(function () {
+            $(".nz").click(function () {
+                ajax({
+                    type: "GET",
+                    url: "10-ajax-test-xml.php",
+                    success: function(xhr){
+                        // console.log(xhr.responseText);
+                        var res = xhr.responseXML;
+                        var info = res.querySelector("nz")
+                        console.log(info);
+                    },
+                    error:function (e) {
+                        alert("请求错误");
+                    }
+                });
+            })
+        })
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000000;
+            margin: 50px auto;
+            text-align: center;
+            background: #cccccc;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+            display: block;
+            margin: 10px auto 10px;
+            border: 1px solid #000;
+        }
+        p{
+            text-align: center;
+            background: pink;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div>
+        <p id="title">商品标题名称</p>
+        <img src="" alt="">
+        <p id="des">商品的描述信息</p>
+        <button name="nz" class="nz">女装</button>
+        <button name="bb">包包</button>
+        <button name="tx">拖鞋</button>
+    </div>
+</body>
+</html>
