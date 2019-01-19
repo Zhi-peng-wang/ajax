@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12-ajax-json</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/myAjax2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('button').click(function () {
+                ajax({
+                    type: "GET",
+                    url: "12-ajax-json.php",
+                    success: function(msg){
+                        // console.log(msg.responseText);
+                        var str = msg.responseText;
+                        //此方法将json对象转换成js对象的形式
+                        var obj = JSON.parse(str);
+                        console.log(obj.name);
+                        console.log(obj.age);
+                    },
+                    error:function (e) {
+                        alert(e.status)
+                    }
+                });
+            })
+        })
+    </script>
+
+
+</head>
+<body>
+<button>发送请求</button>
+</body>
+</html>

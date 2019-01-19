@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>10-ajax-test-xml</title>
+    <title>10-ajax-test-json</title>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/myAjax2.js"></script>
     <script>
@@ -16,21 +16,18 @@
                 var oImage = document.querySelector("img");
                 ajax({
                     type: "GET",
-                    url: "10-ajax-test-xml.php",
+                    url: "10-ajax-test-json.php",
                     data:{'name':this.getAttribute("name")},
                     success: function(xhr){
-                        //通过全局动态获取数据
                         var name = self.getAttribute("name");
-                        var res = xhr.responseXML;
-                        var title = res.querySelector(name+">title").innerHTML;
-                        var des = res.querySelector(name+">des").innerHTML;
-                        var image = res.querySelector(name+">image").innerHTML;
-                        // console.log(title);
-                        // console.log(des);
-                        // console.log(image);
-                        oTitle.innerHTML = title;
-                        oDes.innerHTML = des;
-                        oImage.setAttribute("src",image);
+                        var str = xhr.responseText;
+                        var obj = JSON.parse(str);
+                        // console.log(obj);
+                        var subObj = obj[name];
+                        // console.log(subObj);
+                        oTitle.innerHTML = subObj.title;
+                        oDes.innerHTML = subObj.des;
+                        oImage.setAttribute("src",subObj.image);
                     },
                     error:function (e) {
                         alert("请求错误");

@@ -7,36 +7,22 @@
     <script src="js/myAjax2.js"></script>
     <script>
         $(function () {
-            $("button").click(function () {
-                // 获取全局
-                var self = this;
-                //获取相应元素
-                var oTitle = document.querySelector("#title");
-                var oDes= document.querySelector("#des");
-                var oImage = document.querySelector("img");
-                ajax({
+            $(".nz").click(function () {
+                $.ajax({
                     type: "GET",
                     url: "10-ajax-test-xml.php",
-                    data:{'name':this.getAttribute("name")},
+                    data :{"name":this.getAttribute("name")},
                     success: function(xhr){
-                        //通过全局动态获取数据
-                        var name = self.getAttribute("name");
+                        // console.log(xhr.responseText);
                         var res = xhr.responseXML;
-                        var title = res.querySelector(name+">title").innerHTML;
-                        var des = res.querySelector(name+">des").innerHTML;
-                        var image = res.querySelector(name+">image").innerHTML;
-                        // console.log(title);
-                        // console.log(des);
-                        // console.log(image);
-                        oTitle.innerHTML = title;
-                        oDes.innerHTML = des;
-                        oImage.setAttribute("src",image);
+                        var info = res.querySelector("nz")
+                        console.log(info);
                     },
                     error:function (e) {
                         alert("请求错误");
                     }
-                });
-            });
+                })
+            })
         })
     </script>
     <style>
@@ -64,13 +50,16 @@
             background: pink;
         }
     </style>
+
+
+
 </head>
 <body>
     <div>
         <p id="title">商品标题名称</p>
         <img src="" alt="">
         <p id="des">商品的描述信息</p>
-        <button name="nz">女装</button>
+        <button name="nz" class="nz">女装</button>
         <button name="bb">包包</button>
         <button name="tx">拖鞋</button>
     </div>
